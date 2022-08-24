@@ -1,0 +1,14 @@
+name: Remove Label
+
+on: [issue_comment]
+
+jobs:
+  remove_label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-ecosystem/action-remove-labels@v1
+        if: ${{ startsWith(CVE-2021, '/remove-labels') }}
+        with:
+          github_token: ${{ secrets.github_token }}
+          labels: security vulnerability
